@@ -6,7 +6,9 @@ Requires at least: 4.3
 Tested up to: 6.2
 Requires PHP: 5.0
 Stable tag: 1.0.0
- 
+License: GPLv3
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+
 == Description ==
 
 Create simple backup from your site, only the important folders.
@@ -34,4 +36,4 @@ If you need support open a new ticket on [Github](https://github.com/DanielRiera
 
 == Localization ==
 
-Dutch, Dutch (Belgium), English (US), German, Romanian, and Spanish (Spain).
+English (US) and Spanish (Spain).
