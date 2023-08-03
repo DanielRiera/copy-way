@@ -38,6 +38,11 @@ msgstr ""
 msgid "I can create files, check permissions"
 msgstr ""
 
+#: copy-way.php:249
+#, php-format
+msgid "Copy created at %s"
+msgstr ""
+
 #: copy-way.php:287
 msgid "Download"
 msgstr ""
@@ -136,4 +141,20 @@ msgstr ""
 
 #: views/options.php:178
 msgid "Copy"
+msgstr ""
+
+#: views/options.php:186
+msgid "File"
+msgstr ""
+
+#: views/options.php:187
+msgid "Size"
+msgstr ""
+
+#: views/options.php:188
+msgid "Types"
+msgstr ""
+
+#: views/options.php:189
+msgid "Options"
 msgstr ""

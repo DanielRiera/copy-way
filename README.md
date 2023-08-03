@@ -11,10 +11,10 @@ Stable tag: 1.0.0
 
 Create simple backup from your site, only the important folders.
 
-[X] Copy Plugins
-[X] Copy current theme
-[X] Copy Database
-[X] Copy Uploads 
+- Copy Plugins
+- Copy current theme
+- Copy Database
+- Copy Uploads 
 
 == Installation ==
 
