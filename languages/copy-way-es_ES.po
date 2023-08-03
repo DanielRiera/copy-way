@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: woobadges 1.0.0\n"
+"POT-Creation-Date: 2023-08-03 13:49+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: DanielRiera\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: copy-way.php:53
+msgid "Copy Way"
+msgstr "Copy Way"
+
+#: copy-way.php:65
+msgid "Error when create folders system, check you permissions server"
+msgstr ""
+"Error al crear las carpetas del sistema, compruebe los permisos de su "
+"servidor"
+
+#: copy-way.php:68
+msgid "Copy Way is not active"
+msgstr "Copy Way no está activo"
+
+#: copy-way.php:85
+msgid "Error to create backup folder, check permissions"
+msgstr ""
+"Error al crear la carpeta de copias de seguridad, compruebe los permisos"
+
+#: copy-way.php:139
+msgid "Folder created"
+msgstr "Carpetas creadas"
+
+#: copy-way.php:151
+msgid "I can create files, check permissions"
+msgstr ""
+"No ha sido posible crear los ficheros necesarios, compruebe los permisos"
+
+#: copy-way.php:249
+#, php-format
+msgid "Copy created at %s"
+msgstr "Copia creada el %s"
+
+#: copy-way.php:287
+msgid "Download"
+msgstr "Descargar"
+
+#: copy-way.php:294
+msgid "Delete"
+msgstr "Borrar"
+
+#: views/options.php:41
+msgid "An error has occurred, try again."
+msgstr "Ha ocurrido un error, pruebe de nuevo."
+
+#: views/options.php:45
+msgid "Welcome newsletter :)"
+msgstr "Bienvenid@ al newsletter :)"
+
+#: views/options.php:82
+msgid "Copy Way - Plugin WordPress"
+msgstr "Copy Way - Plugin WordPress"
+
+#: views/options.php:83
+msgid "Create copy for your important folders site."
+msgstr "Crea copias de las carpetas importantes de su sitio"
+
+#: views/options.php:89
+msgid "Do you want to receive the latest?"
+msgstr "¿Quieres recibir lo último?"
+
+#: views/options.php:90
+msgid ""
+"Thank you very much for using our plugin, if you want to receive the latest "
+"news, offers, promotions, discounts, etc ... Sign up for our newsletter. :)"
+msgstr ""
+"Gracias por usar este plugin, si quieres recibir las ultimas noticias, "
+"ofertas, promociones, descuentos, etc… Únase al newsletter. :)"
+
+#: views/options.php:92
+msgid "Required"
+msgstr "Requerido"
+
+#: views/options.php:100
+msgid "Submit"
+msgstr "Enviar"
+
+#: views/options.php:100
+msgid "Processing"
+msgstr "Procesando"
+
+#: views/options.php:105
+msgid "Buy me a Coffe? :)"
+msgstr "¿Me invitas a un café? :)"
+
+#: views/options.php:113
+msgid "Active Copy Way System"
+msgstr "Activar el sistema Copy Way"
+
+#: views/options.php:114
+msgid "Active Copy Way"
+msgstr "Activar Copy Way"
+
+#: views/options.php:122
+msgid "Plugins"
+msgstr "Plugins"
+
+#: views/options.php:123
+msgid "Active this for copy plugin folder"
+msgstr "Activa esto para copiar la carpeta de plugins"
+
+#: views/options.php:131
+msgid "Current Theme"
+msgstr "Tema activo"
+
+#: views/options.php:132
+msgid "Active this for copy current theme"
+msgstr "Activa esto para realizar una copia del tema actual"
+
+#: views/options.php:141
+msgid "Uploads"
+msgstr "Carpeta de Archivos"
+
+#: views/options.php:142
+msgid "Active this for copy uploads folder"
+msgstr "Activa esto para realizar una copia de toda la carpeta de archivos"
+
+#: views/options.php:151
+msgid "Database"
+msgstr "Base de datos"
+
+#: views/options.php:152
+msgid "Active this for create dump for database"
+msgstr "Activa esto para crear una copia e la base de datos"
+
+#: views/options.php:169
+msgid "You cant create database dump, active `mysqldump` on your server"
+msgstr ""
+"No puedes crear una copia e la base de datos, active ‘mysqldump’ en tu "
+"servidor"
+
+#: views/options.php:177
+msgid "Save"
+msgstr "Guardar"
+
+#: views/options.php:178
+msgid "Copy"
+msgstr "Realizar Copia"
+
+#: views/options.php:186
+msgid "File"
+msgstr "Archivo"
+
+#: views/options.php:187
+msgid "Size"
+msgstr "Tamaño"
+
+#: views/options.php:188
+msgid "Types"
+msgstr "Tipos"
+
+#: views/options.php:189
+msgid "Options"
+msgstr "Opciones"

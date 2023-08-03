@@ -1,0 +1,139 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: woobadges 1.0.0\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: DanielRiera\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.2.2\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: copy-way.php:53
+msgid "Copy Way"
+msgstr ""
+
+#: copy-way.php:65
+msgid "Error when create folders system, check you permissions server"
+msgstr ""
+
+#: copy-way.php:68
+msgid "Copy Way is not active"
+msgstr ""
+
+#: copy-way.php:85
+msgid "Error to create backup folder, check permissions"
+msgstr ""
+
+#: copy-way.php:139
+msgid "Folder created"
+msgstr ""
+
+#: copy-way.php:151
+msgid "I can create files, check permissions"
+msgstr ""
+
+#: copy-way.php:287
+msgid "Download"
+msgstr ""
+
+#: copy-way.php:294
+msgid "Delete"
+msgstr ""
+
+#: views/options.php:41
+msgid "An error has occurred, try again."
+msgstr ""
+
+#: views/options.php:45
+msgid "Welcome newsletter :)"
+msgstr ""
+
+#: views/options.php:82
+msgid "Copy Way - Plugin WordPress"
+msgstr ""
+
+#: views/options.php:83
+msgid "Create copy for your important folders site."
+msgstr ""
+
+#: views/options.php:89
+msgid "Do you want to receive the latest?"
+msgstr ""
+
+#: views/options.php:90
+msgid "Thank you very much for using our plugin, if you want to receive the latest news, offers, promotions, discounts, etc ... Sign up for our newsletter. :)"
+msgstr ""
+
+#: views/options.php:92
+msgid "Required"
+msgstr ""
+
+#: views/options.php:100
+msgid "Submit"
+msgstr ""
+
+#: views/options.php:100
+msgid "Processing"
+msgstr ""
+
+#: views/options.php:105
+msgid "Buy me a Coffe? :)"
+msgstr ""
+
+#: views/options.php:113
+msgid "Active Copy Way System"
+msgstr ""
+
+#: views/options.php:114
+msgid "Active Copy Way"
+msgstr ""
+
+#: views/options.php:122
+msgid "Plugins"
+msgstr ""
+
+#: views/options.php:123
+msgid "Active this for copy plugin folder"
+msgstr ""
+
+#: views/options.php:131
+msgid "Current Theme"
+msgstr ""
+
+#: views/options.php:132
+msgid "Active this for copy current theme"
+msgstr ""
+
+#: views/options.php:141
+msgid "Uploads"
+msgstr ""
+
+#: views/options.php:142
+msgid "Active this for copy uploads folder"
+msgstr ""
+
+#: views/options.php:151
+msgid "Database"
+msgstr ""
+
+#: views/options.php:152
+msgid "Active this for create dump for database"
+msgstr ""
+
+#: views/options.php:169
+msgid "You cant create database dump, active `mysqldump` on your server"
+msgstr ""
+
+#: views/options.php:177
+msgid "Save"
+msgstr ""
+
+#: views/options.php:178
+msgid "Copy"
+msgstr ""
