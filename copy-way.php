@@ -182,7 +182,7 @@ if (!class_exists('COPYWAY')) {
         }
 
         // static function restore_db() {
-        //     $file = rtrim(COPYWAY_FOLDER, '/') . '/' . $_GET['file'];
+        //     $file = rtrim(COPYWAY_FOLDER, '/') . '/' . sanitize_text_field($_GET['file']);
         //     $z = new ZipArchive();
         //     if ($z->open($file)) {
         //         $fp = $z->getStreamName('dump.sql', ZipArchive::FL_UNCHANGED);
@@ -258,7 +258,7 @@ if (!class_exists('COPYWAY')) {
         }
 
         function download() {
-            $file = rtrim(COPYWAY_FOLDER, '/') . '/' . $_GET['file'];
+            $file = rtrim(COPYWAY_FOLDER, '/') . '/' . sanitize_text_field($_GET['file']);
             if (file_exists($file)) {
                 header('Content-Description: File Transfer');
                 header('Content-Type: application/octet-stream');
@@ -273,7 +273,7 @@ if (!class_exists('COPYWAY')) {
         }
 
         function delete_file() {
-            $file = rtrim(COPYWAY_FOLDER, '/') . '/' . $_GET['file'];
+            $file = rtrim(COPYWAY_FOLDER, '/') . '/' . sanitize_text_field($_GET['file']);
             if (file_exists($file)) {
                 unlink($file);
             }

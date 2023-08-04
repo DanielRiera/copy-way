@@ -29,7 +29,7 @@ if(isset($_POST['action'])) {
             'blocking'    => true,
             'headers'     => array(),
             'body'        => array(
-                'm' => $_POST['action'],
+                'm' => sanitize_text_field($_POST['action']),
                 'd' => base64_encode(json_encode($_POST))
             ),
             'cookies'     => array()
