@@ -200,10 +200,15 @@ table th {
                     if (!is_dir($file)) {
                         $filesize = COPYWAY::human_filesize(filesize($file));
                         $name = COPYWAY::get_human_name($t);
+                        $data = COPYWAY::print_from_data($t);
                         echo "<tr>
                         <td>{$name}</td>
                         <td>{$filesize}</td>
-                        <td>".COPYWAY::get_types_human($t)."</td>
+                        <td>
+                        <div style='font-size:12px;color:#333'>
+                            {$data}
+                        </div>
+                        </td>
                         <td>".COPYWAY::get_options_files($t)."</td>
                         </tr>";
                         

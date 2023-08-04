@@ -27,6 +27,8 @@ if (!class_exists('COPYWAY')) {
             add_action('admin_menu', array($this, 'create_menu'));
             add_action( 'wp_ajax_download', array($this, 'download') );
             // add_action( 'wp_ajax_restore', array($this, 'restore_db') );
+            add_action( 'wp_ajax_restore_theme', array($this, 'restore_theme') );
+            
             add_action( 'wp_ajax_delete_file', array($this, 'delete_file') );
         }
 
@@ -57,6 +59,95 @@ if (!class_exists('COPYWAY')) {
         {
             require_once(COPYWAY_PATH . 'views/options.php');
         }
+
+        static function get_from_data($file) {
+            $result = file_get_contents('zip://'.COPYWAY_FOLDER.'/'.$file.'#data.json');
+            return json_decode($result);
+        }
+
+        static function print_from_data($file) {
+            $result = self::get_from_data($file);
+
+            $text = "";
+
+            if($result->theme) {
+                $text .= "<strong>Theme Name:</strong> {$result->theme->name}</br>";
+                $text .= "<strong>Theme Version:</strong> {$result->theme->version}</br>";
+            }else{
+                $text .= "<strong>Theme:</strong> No</br>";
+            }
+
+            if($result->plugins) {
+                $text .= "<strong>Plugins:</strong> Yes</br>";
+            }else{
+                $text .= "<strong>Plugins:</strong> No</br>";
+            }
+
+            if($result->dump) {
+                $text .= "<strong>Database:</strong> Yes</br>";
+            }else{
+                $text .= "<strong>Database:</strong> No</br>";
+            }
+
+            if($result->created_user) {
+                $text .= "<strong>Username:</strong> {$result->created_user}</br>";
+            }
+
+            return $text;
+        }
+
+        static function restore_theme() {
+            $file = sanitize_text_field($_GET['file']);
+            $result = self::get_from_data($file);
+            // die(var_dump(basename($result->theme->template), true));
+            // die(dirname($result->theme->template));
+            if($result->theme) {
+                // @unlink($folder);
+                $zip = new ZipArchive;
+                $zip->open(COPYWAY_FOLDER.'/'.$file);
+                if(!self::copy_directory("zip://".COPYWAY_FOLDER.'/'.$file."#".basename($result->theme->template) . '/', dirname($result->theme->template) . '/')){
+                    error_log(var_export(error_get_last(), true));
+                    $zip->close();
+                    die('error moviendo ' . dirname($result->theme->template));
+                }
+                
+                $zip->close();
+            }else{
+                die('no existe theme');
+            }
+
+            header("Location: ".$_SERVER['HTTP_REFERER']);
+            exit;
+        }
+
+        static function copy_directory($src, $dst) { 
+  
+            // open the source directory
+            $dir = opendir($src); 
+          
+            // Make the destination directory if not exist
+            @mkdir($dst); 
+          
+            // Loop through the files in source directory
+            while( $file = readdir($dir) ) { 
+          
+                if (( $file != '.' ) && ( $file != '..' )) { 
+                    if ( is_dir($src . '/' . $file) ) 
+                    { 
+          
+                        // Recursively calling custom copy function
+                        // for sub directory 
+                        self::copy_directory($src . '/' . $file, $dst . '/' . $file); 
+          
+                    } 
+                    else { 
+                        copy($src . '/' . $file, $dst . '/' . $file); 
+                    } 
+                } 
+            } 
+          
+            closedir($dir);
+        } 
 
         static function init_copy()
         {
@@ -104,27 +195,33 @@ if (!class_exists('COPYWAY')) {
             if($dump_sql) {
                 $filename .= '_dump';
             }
-
+            $data = new stdClass();
             $filename .= '.zip';
             $zip = self::create_zip($filename);
 
             $dump_file = false;
             if ($zip instanceof ZipArchive) {
                 if ($plugins) {
-                    self::copy_plugins($zip);
+                    self::copy_plugins($zip, $data);
                 }
 
                 if ($theme) {
-                    self::copy_theme($zip);
+                    self::copy_theme($zip, $data);
                 }
 
                 if ($uploads) {
-                    self::copy_uploads($zip);
+                    self::copy_uploads($zip, $data);
                 }
 
                 if ($dump_sql) {
-                    $dump_file = self::copy_dump($zip);
+                    $dump_file = self::copy_dump($zip, $data);
                 }
+
+                var_dump(json_encode($data));
+                $current_user = wp_get_current_user();
+                $data->created_user = $current_user->user_login;
+                //Save data
+                $zip->addFromString('data.json', json_encode($data));
 
                 $zip->close();
 
@@ -154,29 +251,42 @@ if (!class_exists('COPYWAY')) {
             return $zip;
         }
 
-        static function copy_plugins(&$zip)
+        static function copy_plugins(&$zip, &$data)
         {
+            $data->plugins = true;
             return self::zipDir(WP_PLUGIN_DIR, $zip);
         }
 
-        static function copy_theme(&$zip)
+        static function copy_theme(&$zip, &$data)
         {
-            return self::zipDir(get_template_directory(), $zip);
+            $theme = wp_get_theme();
+            $data->theme = new stdClass();
+
+            $data->theme->template = get_template_directory();
+            $data->theme->version = $theme->get('Version');
+            $data->theme->name = $theme->get('Name');
+            error_log(var_export($data, true));
+            return self::zipDir($data->theme->template, $zip);
         }
 
-        static function copy_uploads(&$zip)
+        static function copy_uploads(&$zip, &$data)
         {
             $uploaddir = wp_upload_dir();
+            $data->uploads = true;
             return self::zipDir($uploaddir['basedir'], $zip, array(COPYWAY_FOLDER));
         }
 
-        static function copy_dump(&$zip)
+        static function copy_dump(&$zip, &$data)
         {
             $dir = COPYWAY_FOLDER . '/dump.sql';
             if (!file_exists($dir)) {
                 fopen($dir, "w");
             }
-            exec('mysqldump -R --user=' . DB_USER . ' --password=' . DB_PASSWORD . ' --host=' . DB_HOST . '  ' . DB_NAME . " --result-file={$dir} 2>&1", $output);
+
+            exec('/Applications/MAMP/Library/bin/mysqldump --user=' . DB_USER . ' --password=' . DB_PASSWORD . ' --host=' . DB_HOST . '  ' . DB_NAME . " --result-file={$dir} 2>&1", $output);
+            
+            $data->dump = true;
+            
             $zip->addFile($dir, "dump.sql");
             return $dir;
         }
@@ -290,6 +400,13 @@ if (!class_exists('COPYWAY')) {
             // if(strstr($file, 'dump')) {
             //     $options .= "<button type='submit' class='button' name='action' value='restore'>".__('Restore DB', 'copy-way')."</button>";
             // }
+
+            if(strstr($file, 'theme')) {
+                 $options .= "<button type='submit' class='button' name='action' value='restore_theme'>".__('Restore Theme', 'copy-way')."</button>";
+            }
+
+
+            
 
             $options .= "<button type='submit' class='button' name='action' value='delete_file'>".__('Delete', 'copy-way')."</button>
             </form>";
