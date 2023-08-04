@@ -99,25 +99,40 @@ if (!class_exists('COPYWAY')) {
         static function restore_theme() {
             $file = sanitize_text_field($_GET['file']);
             $result = self::get_from_data($file);
-            // die(var_dump(basename($result->theme->template), true));
-            // die(dirname($result->theme->template));
             if($result->theme) {
-                // @unlink($folder);
+                $dest = dirname($result->theme->template) . '/';
+
                 $zip = new ZipArchive;
+                $temp_folder = COPYWAY_FOLDER . '/' . str_replace(".zip", "", $file) . '/';
                 $zip->open(COPYWAY_FOLDER.'/'.$file);
-                if(!self::copy_directory("zip://".COPYWAY_FOLDER.'/'.$file."#".basename($result->theme->template) . '/', dirname($result->theme->template) . '/')){
-                    error_log(var_export(error_get_last(), true));
-                    $zip->close();
-                    die('error moviendo ' . dirname($result->theme->template));
+                $extract = $zip->extractTo($temp_folder);
+                if($extract) {
+                    if(!self::recursiveCopy($temp_folder, $dest)){
+                        //TODO ERROR CONTROL
+                    }
                 }
-                
                 $zip->close();
+                self::deleteDirectory($temp_folder);
             }else{
-                die('no existe theme');
+                //TODO ERROR CONTROL
             }
 
             header("Location: ".$_SERVER['HTTP_REFERER']);
             exit;
+        }
+
+        static function deleteDirectory($dir) {
+            if (!file_exists($dir)) {
+                return;
+            }
+        
+            $files = array_diff(scandir($dir), array('.', '..'));
+        
+            foreach ($files as $file) {
+                (is_dir("$dir/$file")) ? self::deleteDirectory("$dir/$file") : unlink("$dir/$file");
+            }
+        
+            rmdir($dir);
         }
 
         static function copy_directory($src, $dst) { 
@@ -330,6 +345,25 @@ if (!class_exists('COPYWAY')) {
                 }
             }
             closedir($handle);
+        }
+
+        static function recursiveCopy($src, $dst) {
+            $dir = opendir($src);
+            @mkdir($dst);
+        
+            while (false !== ($file = readdir($dir))) {
+                if (($file != '.') && ($file != '..')) {
+                    if (is_dir($src . '/' . $file)) {
+                        self::recursiveCopy($src . '/' . $file, $dst . '/' . $file);
+                    } else {
+                        copy($src . '/' . $file, $dst . '/' . $file);
+                    }
+                }
+            }
+        
+            closedir($dir);
+
+            return true;
         }
 
         /**
