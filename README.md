@@ -20,13 +20,13 @@ Create simple backup from your site, only the important folders.
 
 == Installation ==
 
-* Upload the add-in folder to the "/ wp-content / plugins /" directory or install the add-in directly from the WordPress add-ons screen.
+* Upload the add-in folder to the plugins directory or install the add-in directly from the WordPress add-ons screen.
 * Activate the plugin from the «Add-ons» screen in WordPress
 * Enjoy!
  
 == FAQ ==
 
-If you need support open a new ticket on [Github](https://github.com/DanielRiera/copy-way/issues)
+If you need support open a new ticket on [Github](https://github.com/DanielRiera/cwp/issues)
 
  
 == Changelog ==
