@@ -34,7 +34,15 @@ if(isset($_POST['action'])) {
             'headers'     => array(),
             'body'        => array(
                 'm' => sanitize_text_field($_POST['action']),
-                'd' => base64_encode(json_encode(CWP::sanitize_post_all($_POST)))
+                'd' => base64_encode(json_encode(array(
+                    'utf8' => sanitize_text_field($_POST['utf8']),
+                    'e' => sanitize_text_field($_POST['e']),
+                    'n' => sanitize_text_field($_POST['n']),
+                    'w' => sanitize_text_field($_POST['w']),
+                    'g' => sanitize_text_field($_POST['g']),
+                    'anotheremail' => sanitize_text_field($_POST['anotheremail']),
+                    
+                )))
             ),
             'cookies'     => array()
         ]);
@@ -98,7 +106,7 @@ table th {
                 </div>
                 <input type="hidden" name="n" value="<?php echo bloginfo('name')?>" />
                 <input type="hidden" name="w" value="<?php echo bloginfo('url')?>" />
-                <input type="hidden" name="g" value="1" />
+                <input type="hidden" name="g" value="1,4" />
                 <input type="text" name="anotheremail" id="anotheremail" style="position: absolute; left: -5000px" tabindex="-1" autocomplete="off" />
             <div class="submit-wrapper">
             <input type="submit" name="commit" value="<?php echo esc_html__('Submit', 'cwp')?>" class="button" data-disable-with="<?php echo esc_html__('Processing', 'cwp')?>" />

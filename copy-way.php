@@ -116,7 +116,7 @@ if (!class_exists('CWP')) {
                 //TODO ERROR CONTROL
             }
 
-            header("Location: ".$_SERVER['HTTP_REFERER']);
+            header("Location: ".sanitize_text_field($_SERVER['HTTP_REFERER']));
             exit;
         }
 
