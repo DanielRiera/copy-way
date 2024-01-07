@@ -8,7 +8,8 @@
  * Text Domain: cwp
  * Domain Path: /languages
  * Required WP: 5.0
- * Tested WP: 6.2.2
+ * Tested WP: 6.4
+ * License: GPLv3
  */
 if (!defined('ABSPATH'))
     exit;

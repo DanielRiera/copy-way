@@ -3,7 +3,7 @@ Contributors: DanielRiera
 Donate link: https://www.paypal.com/donate/?hosted_button_id=EZ67DG78KMXWQ
 Tags: backup, safe, copy, updates
 Requires at least: 4.3
-Tested up to: 6.2
+Tested up to: 6.4
 Requires PHP: 5.0
 Stable tag: 1.0.0
 License: GPLv3

@@ -19,7 +19,8 @@ if(isset($_POST['action'])) {
             if(isset($response['error']) and $response['error']) {
                 $class = 'notice notice-error';
             }
-            printf( '<div class="%s"><p>%s</p></div>', $class, $response['message']);
+            $message = sprintf( '<div class="%s"><p>%s</p></div>', $class, $response['message']);
+            echo wp_kses_post($message);
         }
 
     }
@@ -50,13 +51,15 @@ if(isset($_POST['action'])) {
 
         if($result['error']) {
             $class = 'notice notice-error';
-            $message = __( 'An error has occurred, try again.', 'cwp' );
-            printf( '<div class="%s"><p>%s</p></div>', $class, $message );
+            $message = esc_html__( 'An error has occurred, try again.', 'cwp' );
+            $message_final = sprintf( '<div class="%s"><p>%s</p></div>', $class, $message );
+            echo wp_kses_post($message_final);
         }else{
             $class = 'notice notice-success';
             $message = __( 'Welcome newsletter :)', 'cwp' );
             
-            printf( '<div class="%s"><p>%s</p></div>', $class, $message );
+            $message_final = sprintf( '<div class="%s"><p>%s</p></div>', $class, $message );
+            echo wp_kses_post($message_final);
 
             update_option('cwp-newsletter' , '1');
         }
@@ -104,8 +107,8 @@ table th {
                     <label class="control-label email required" for="subscriber_email"><abbr title="<?php echo esc_html__('Required', 'cwp')?>"> </abbr></label>
                     <input class="form-control string email required" type="email" name="e" id="subscriber_email" value="<?php echo esc_html($user->user_email) ?>" />
                 </div>
-                <input type="hidden" name="n" value="<?php echo bloginfo('name')?>" />
-                <input type="hidden" name="w" value="<?php echo bloginfo('url')?>" />
+                <input type="hidden" name="n" value="<?php echo esc_html__(bloginfo('name'))?>" />
+                <input type="hidden" name="w" value="<?php echo esc_html__(bloginfo('url'))?>" />
                 <input type="hidden" name="g" value="1,4" />
                 <input type="text" name="anotheremail" id="anotheremail" style="position: absolute; left: -5000px" tabindex="-1" autocomplete="off" />
             <div class="submit-wrapper">
@@ -162,23 +165,18 @@ table th {
             <tr valign="top">
                 <th scope="row"><?php echo esc_html__('Database', 'cwp')?>
                     <p class="description"><?php echo esc_html__('Active this for create dump for database','cwp')?></p>
-                    
                 </th>
                 <td>
                     <?php 
                     $disabled = true;
-                    if(`mysqldump`) {
+                    if('mysqldump') {
                         $disabled = false;
-                    }else{
-                        if(`/Applications/MAMP/Library/bin/mysqldump`) {
-                            $disabled = false;
-                        }
                     }
                     ?>
                     <label><input <?php echo $disabled ? 'disabled' : ''?> type="checkbox" name="cwp_db" value="1" <?php echo checked('1', get_option('cwp_db', '0'))?> /></label>
                     <?php
                     if($disabled) {
-                        echo __('You cant create database dump, active `mysqldump` on your server', 'cwp');
+                        echo esc_html__('You cant create database dump, active mysqldump on your server', 'cwp');
                     }
                     ?>
                 </td>
@@ -213,7 +211,7 @@ table th {
                         $filesize = CWP::human_filesize(filesize($file));
                         $name = CWP::get_human_name($t);
                         $data = CWP::print_from_data($t);
-                        echo "<tr>
+                        echo wp_kses_post("<tr>
                         <td>{$name}</td>
                         <td>{$filesize}</td>
                         <td>
@@ -222,7 +220,7 @@ table th {
                         </div>
                         </td>
                         <td>".CWP::get_options_files($t)."</td>
-                        </tr>";
+                        </tr>");
                         
                     }
                 }
