@@ -18,6 +18,10 @@ Create simple backup from your site, only the important folders.
 - Copy Database
 - Copy Uploads 
 
+From the plugin configuration page you can find a form to subscribe to the newsletter, news, etc. from the developer.
+
+For more information about the privacy policy you can access the [following link](https://danielriera.net/politica-de-privacidad).
+
 == Installation ==
 
 * Upload the add-in folder to the plugins directory or install the add-in directly from the WordPress add-ons screen.

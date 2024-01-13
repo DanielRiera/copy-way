@@ -107,8 +107,8 @@ table th {
                     <label class="control-label email required" for="subscriber_email"><abbr title="<?php echo esc_html__('Required', 'cwp')?>"> </abbr></label>
                     <input class="form-control string email required" type="email" name="e" id="subscriber_email" value="<?php echo esc_html($user->user_email) ?>" />
                 </div>
-                <input type="hidden" name="n" value="<?php echo esc_html__(bloginfo('name'))?>" />
-                <input type="hidden" name="w" value="<?php echo esc_html__(bloginfo('url'))?>" />
+                <input type="hidden" name="n" value="<?php echo esc_html(bloginfo('name'))?>" />
+                <input type="hidden" name="w" value="<?php echo esc_html(bloginfo('url'))?>" />
                 <input type="hidden" name="g" value="1,4" />
                 <input type="text" name="anotheremail" id="anotheremail" style="position: absolute; left: -5000px" tabindex="-1" autocomplete="off" />
             <div class="submit-wrapper">
