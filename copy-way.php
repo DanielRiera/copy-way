@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Copy Way
  * Description: Backup you important parts site
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Daniel Riera
  * Author URI: https://danielriera.net
  * Text Domain: cwp
