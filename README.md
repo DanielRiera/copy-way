@@ -30,7 +30,7 @@ For more information about the privacy policy you can access the [following link
  
 == FAQ ==
 
-If you need support open a new ticket on [Github](https://github.com/DanielRiera/cwp/issues)
+If you need support open a new ticket on [Github](https://github.com/DanielRiera/copy-way/issues)
 
  
 == Changelog ==
